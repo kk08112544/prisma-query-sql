@@ -17,6 +17,7 @@ export class DvdService {
                 id: true,
                 title: true,
                 img_url: true,
+                description: true,
                 status: {
                     select: {
                         status_name: true
@@ -27,11 +28,21 @@ export class DvdService {
     }
     
 
-    async getDvD(id: number): Promise<Dvd | null> { 
-        return this.prisma.dvd.findUnique({ 
-            where: { id: Number(id) } ,
-            
-        });
+    async getDvD(id: number): Promise<any> { 
+        return this.prisma.dvd.findUnique({
+            where: { id: Number(id) },
+            select: {
+              id: true,
+              title: true,
+              img_url: true,
+              description: true,
+              status: {
+                select: {
+                  status_name: true
+                }
+              }
+            }
+          });
     }
 
 
