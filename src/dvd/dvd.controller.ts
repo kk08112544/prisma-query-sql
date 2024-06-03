@@ -50,8 +50,8 @@ export class DvdController{
    @Delete(':id')
    async deleteDvd(@Param('id') id:number, @Res() res:Response): Promise<any>{
         try{
-            const book = await this.dvdService.deleteDvD(id);
-            if(book){
+            const dvd = await this.dvdService.deleteDvD(id);
+            if(dvd){
                 res.status(201).json({message:'Delete Successfully'})
             }else{
                 res.status(400).json({error:'DvD ID not found'});
